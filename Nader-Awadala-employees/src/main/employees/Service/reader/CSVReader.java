@@ -4,6 +4,7 @@ import main.employees.Model.Employee;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -17,6 +18,7 @@ public class CSVReader implements Reader {
         BufferedReader br = null;
         String line;
         String datePattern = "yyyy-MM-dd";
+
         try {
             br = new BufferedReader(new FileReader(filePath));
             while ((line = br.readLine()) != null) {
@@ -29,8 +31,20 @@ public class CSVReader implements Reader {
 
                 employees.add(new Employee(id, projectId, dateFrom, dateTo));
             }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (FileNotFoundException e) {
+            System.err.println("Error: The file was not found at the specified path: " + filePath);
+            return employees;
+        }  catch (Exception e) {
+            System.err.println("Error: An unexpected error occurred: " + e.getMessage());
+            return employees;
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    System.err.println("Error: Failed to close the BufferedReader.");
+                }
+            }
         }
         return employees;
     }

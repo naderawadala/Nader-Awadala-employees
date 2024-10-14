@@ -5,11 +5,16 @@ import main.employees.Service.employee.EmployeeService;
 import main.employees.Service.reader.CSVReader;
 
 import java.util.List;
+import java.util.Scanner;
 
 
 public class Main {
     public static void main(String[] args) {
-        String filePath = "F:\\the batcave\\Nader-Awadala-employees\\Nader-Awadala-employees\\src\\main\\resources\\data.csv";
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Please enter the absolute path (including filename) to the CSV file: ");
+        String filePath = scanner.nextLine();
+        scanner.close();
+
         CSVReader readerService = new CSVReader();
         List<Employee> employees = readerService.read(filePath);
 
