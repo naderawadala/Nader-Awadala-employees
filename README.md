@@ -1,7 +1,19 @@
 # Employee Project Overlap
 This project is designed to analyze employee work periods on various projects by reading employee data from a CSV file. It identifies the pairs of employees who have worked together the longest on common projects and calculates the total number of days they worked together.
 
-## 1. CSVReader
+## Getting started
+Simply clone the repo into a folder of your choosing, and when running the project you must provide an absolute filepath to the .CSV file when prompted to do so. An example CSV file would be:
+
+143, 12, 2013-11-01, 2014-01-05
+
+299, 11, 2014-03-01, 2014-12-31
+
+143, 11, 2010-01-01, 2010-12-31
+
+
+Where from left to right you have employeeId, projectId, startDate, endDate
+
+### 1. CSVReader
 The `CSVReader` class is responsible for reading employee data from a specified CSV file. It parses each line of the file and converts it into `Employee` objects.
 
 **Key Features:**
@@ -14,7 +26,7 @@ The `CSVReader` class is responsible for reading employee data from a specified 
 ```java
 public List<Employee> read(String filePath);
 ```
-## 2. EmployeeService
+### 2. EmployeeService
 
 The `EmployeeService` class is responsible for analyzing employee work data and finding the longest working pairs of employees on shared projects. 
 
